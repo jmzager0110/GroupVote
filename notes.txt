@@ -1,0 +1,4 @@
+//TODO: Create new SQL Schema with name to match & update env var & app.props
+//TODO: Create new heroku app with name to match & update Procfile
+//TODO: Research boot strap packages & update templates
+//TODO: Hey! Username refers to logging in! Not the same as displayName.
