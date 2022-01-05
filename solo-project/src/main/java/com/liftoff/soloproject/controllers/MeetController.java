@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 
 @Controller
 @ResponseBody
@@ -37,6 +39,14 @@ public class MeetController {
         user.setPassword(encodedPassword);
         userRepository.save(user);
         return "register_success";
+    }
+
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<User> listUsers = (List<User>) userRepository.findAll();
+        model.addAttribute("listUsers", listUsers);
+
+        return "users";
     }
 }
 
