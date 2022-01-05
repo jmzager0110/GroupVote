@@ -1,4 +1,4 @@
-package com.liftoff.soloproject;
+package com.liftoff.soloproject.models;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

@@ -1,11 +1,13 @@
-package com.liftoff.soloproject;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+package com.liftoff.soloproject.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Entity
 public class User extends AbstractEntity {
@@ -35,11 +37,25 @@ public class User extends AbstractEntity {
     @Column (name = "last_name")
     private String lastName;
 
-    //TODO: If decide to use pwHash, then should I replace password field with this? Review this section from the book!
+    //added these (enabled & roles) from Chris Bay's Spring Security tutorial
     @NotNull
-    private String pwHash;
+    private Boolean enabled = true;
 
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    public User(String email, String fullName, String encode) {
+        super();
+    }
+
+    public List<String> getRoles() {
+        ArrayList<String> roles = new ArrayList<>();
+        roles.add("ROLE_USER");
+        return roles;
+    }
+
+    public User(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    //86'ed Bcrypt in order to implement Spring Security
 
     public User(String email, String displayName, String userName, String password, String firstName, String lastName) {
         this.email = email;
@@ -50,9 +66,6 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public User(String pwHash) {
-        this.pwHash = pwHash;
-    }
 
     public User(){}
 
@@ -104,39 +117,49 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public String getPwHash() {
-        return pwHash;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setPwHash(String pwHash) {
-        this.pwHash = pwHash;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
+    //Used the equals & hascode methods from Chris Bay's Spring Security tutorial
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        if (!super.equals(o)) return false;
-        User user = (User) o;
-        return getEmail().equals(user.getEmail()) && getUserName().equals(user.getUserName()) && getDisplayName().equals(user.getDisplayName()) && getPassword().equals(user.getPassword()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getPwHash().equals(user.getPwHash());
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User user = (User) obj;
+        return email.equals(user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getEmail(), getUserName(), getDisplayName(), getPassword(), getFirstName(), getLastName(), getPwHash());
+        return Objects.hash(getEmail());
     }
 
-    //TODO: Finish/Update toString Method
+
     @Override
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
                 ", displayName='" + displayName + '\'' +
-                ", userName=' " + userName + '\'' +
-                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", pwHash='" + pwHash + '\'' +
                 '}';
+    }
+
+    private static boolean isValidEmail(String email) {
+        Pattern pattern = Pattern.compile("\\S+@\\S+");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

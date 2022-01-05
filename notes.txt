@@ -7,3 +7,16 @@
 //TODO: In reference to the Registration and Login Tutorial, Template files created from that are: index*, signup)form, register_success, register_success, users - therefore, you need to refactor these pages!
 //PER ILYANE: I’ve just found the best thing is to remove the remote repo from the project,
 //delete it in GitHub, go into your files from your desktop, remove any git files, and completely start the git process over.
+
+
+//86'ed BCrypt implementation from User:
+//private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//public User(String username, String password) {
+//     this.username = username;
+//     this.pwHash = encoder.encode(password);
+//  }
+//public boolean isMatchingPassword(String password) {
+//   return encoder.matches(password, pwHash);
+//}
+//86'ed AuthenticationController, AuthenticationFilter, WebApplicationConfig as well as dto package entirely, plus register.html, login was originally created from the authentication studio.
+
