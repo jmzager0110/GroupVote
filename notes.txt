@@ -1,4 +1,9 @@
-//TODO: Create new SQL Schema with name to match & update env var & app.props
+//TODO: Create new SQL Schema with name to match & update env var & app.props - DONE!
 //TODO: Create new heroku app with name to match & update Procfile
 //TODO: Research boot strap packages & update templates
-//TODO: Hey! Username refers to logging in! Not the same as displayName.
+//TODO: Hey! Username refers to logging in! Not the same as displayName!
+//TODO: Run register.htnl w/ DTOs versus signUp_form.html w/ tutorial
+//TODO: If you end up using signup_form.html, check thymeleaf tagged variables, should they use an asterisk? What can you do about the inline styling? What do the class tags col-4,8, m-3 refer to?
+
+//PER ILYANE: I’ve just found the best thing is to remove the remote repo from the project,
+//delete it in GitHub, go into your files from your desktop, remove any git files, and completely start the git process over.

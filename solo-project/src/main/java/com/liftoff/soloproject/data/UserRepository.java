@@ -12,4 +12,7 @@ public interface UserRepository extends CrudRepository<User, String> {
 
     Optional<User> findById(Integer userId);
 
+    //https://www.codejava.net/frameworks/spring-boot/user-registration-and-login-tutorial
+    //In this tutorial, they use JpaRepository instead of CRUD, but that might just be depreciated.
+
 }
