@@ -21,7 +21,7 @@ public class User extends AbstractEntity {
     @NotNull
     @Column (unique = true, length = 10)
     private String displayName;
-    //TODO: How can I change this to be optional?
+    //TODO: How can I change this to be optional? Review Optional secton from book
 
     @NotNull
     @Column (length = 64)
@@ -35,7 +35,7 @@ public class User extends AbstractEntity {
     @Column (name = "last_name")
     private String lastName;
 
-    //TODO: If decide to use pwHash, then should I replace password field with this?
+    //TODO: If decide to use pwHash, then should I replace password field with this? Review this section from the book!
     @NotNull
     private String pwHash;
 

@@ -4,6 +4,6 @@
 //TODO: Hey! Username refers to logging in! Not the same as displayName!
 //TODO: Run register.htnl w/ DTOs versus signUp_form.html w/ tutorial
 //TODO: If you end up using signup_form.html, check thymeleaf tagged variables, should they use an asterisk? What can you do about the inline styling? What do the class tags col-4,8, m-3 refer to?
-
+//TODO: In reference to the Registration and Login Tutorial, Template files created from that are: index*, signup)form, register_success, register_success, users - therefore, you need to refactor these pages!
 //PER ILYANE: I’ve just found the best thing is to remove the remote repo from the project,
 //delete it in GitHub, go into your files from your desktop, remove any git files, and completely start the git process over.

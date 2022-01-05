@@ -21,6 +21,8 @@ public class MeetController {
     @Autowired
     private UserRepository userRepository;
 
+
+    //TODO: Replace all mapping methods as files from tutorial removed.
     @GetMapping("")
     public String viewHomePage() {
         return "index";
