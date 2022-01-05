@@ -19,9 +19,10 @@ public class UserRepositoryTests {
 
     @Autowired
     private TestEntityManager entityManager;
+    //TestEntityManager is a wrapper of JPA's EntityManager, see https://www.baeldung.com/hibernate-entitymanager
 
     @Autowired
-    private UserRepository repo;
+    private UserRepository userRepository;
 
     // test methods go below
     //from Section 4 of tutorial, https://www.codejava.net/frameworks/spring-boot/user-registration-and-login-tutorial
@@ -34,11 +35,19 @@ public class UserRepositoryTests {
         user.setFirstName("Ravi");
         user.setLastName("Kumar");
 
-        User savedUser = repo.save(user);
+        User savedUser = userRepository.save(user);
 
         User existUser = entityManager.find(User.class, savedUser.getId());
 
         assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
 
     }
+
+    //TODO: Set up more tests for the User & feature 1, login or sign up.
+    // Test 2: use assertNotNull(User) to test that the user is created in a different way than Test 1.
+    // Other methods to use are assertEquals(), assertFalse(), & assertTrue().
+    // Additionally, use the @Before & @After since you are utilizing a database!
+    // From Chapter 6, Section 2, "A good or frequent use case for @After would be if you needed to test
+    // some code that requires access to a database. Here, you could open the database connection with a
+    // @Before method and close the connection in an @After method." https://education.launchcode.org/java-independent-track/chapters/unit-testing/junit.html#java-annotations
 }

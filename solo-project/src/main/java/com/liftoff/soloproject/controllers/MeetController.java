@@ -22,7 +22,9 @@ public class MeetController {
     private UserRepository userRepository;
 
 
-    //TODO: Replace all mapping methods as files from tutorial removed.
+    //TODO: Replace all mapping methods as files from tutorial removed (signup_form, register_success, & users)
+    //TODO: login.html & register.html is using <form method="post">
+    //TODO: html files from the tutorial far more complex, see notes.txt for ideas
     @GetMapping("")
     public String viewHomePage() {
         return "index";
@@ -52,6 +54,5 @@ public class MeetController {
     }
 }
 
-//TODO: login.html & register.html is using <form method="post">
-//TODO: html files from the tutorial far more complex, see notes.txt for ideas
+
 
