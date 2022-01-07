@@ -15,15 +15,6 @@ public class User extends AbstractEntity {
     private String email;
 
     @NotNull
-    @Column (unique = true, length = 10)
-    private String userName;
-
-    @NotNull
-    @Column (unique = true, length = 10)
-    private String displayName;
-    //TODO: How can I change this to be optional?
-
-    @NotNull
     @Column (length = 64)
     private String password;
 
@@ -35,23 +26,11 @@ public class User extends AbstractEntity {
     @Column (name = "last_name")
     private String lastName;
 
-    //TODO: If decide to use pwHash, then should I replace password field with this?
-    @NotNull
-    private String pwHash;
-
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-    public User(String email, String displayName, String userName, String password, String firstName, String lastName) {
+    public User(String email, String password, String firstName, String lastName) {
         this.email = email;
-        this.displayName = displayName;
-        this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public User(String pwHash) {
-        this.pwHash = pwHash;
     }
 
     public User(){}
@@ -62,22 +41,6 @@ public class User extends AbstractEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {
@@ -104,39 +67,28 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public String getPwHash() {
-        return pwHash;
-    }
-
-    public void setPwHash(String pwHash) {
-        this.pwHash = pwHash;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         if (!super.equals(o)) return false;
         User user = (User) o;
-        return getEmail().equals(user.getEmail()) && getUserName().equals(user.getUserName()) && getDisplayName().equals(user.getDisplayName()) && getPassword().equals(user.getPassword()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getPwHash().equals(user.getPwHash());
+        return getEmail().equals(user.getEmail()) && getPassword().equals(user.getPassword()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getEmail(), getUserName(), getDisplayName(), getPassword(), getFirstName(), getLastName(), getPwHash());
+        return Objects.hash(super.hashCode(), getEmail(), getPassword(), getFirstName(), getLastName());
     }
 
-    //TODO: Finish/Update toString Method
+    //TODO: Finish/Update toString Method, it shouldn't have password, right?
     @Override
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
-                ", displayName='" + displayName + '\'' +
-                ", userName=' " + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", pwHash='" + pwHash + '\'' +
                 '}';
     }
 }
