@@ -3,7 +3,7 @@ Solo Project Temp Repository
 
 [README copied from original repository](https://github.com/jmzager0110/SoloProject)
 
-Initial Project Repository This is my Solo Project for LiftOff.
+This is my Solo Project for LiftOff.
 
 Originally, I had intended to base my project around learning Spring Boot JDBC, but I decided to start over with a base project built off of Spring Boot JPA. I decided to pare down my expectations of myself, to begin with something I am more familiar with (JPA), then focus on the other technologies I want to learn, such as Boot Strap, Sass, and go from there!
 
