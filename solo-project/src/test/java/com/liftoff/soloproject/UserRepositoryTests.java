@@ -1,15 +1,16 @@
 package com.liftoff.soloproject;
 
+import com.liftoff.soloproject.controllers.MeetController;
 import com.liftoff.soloproject.data.UserRepository;
-import org.apache.tomcat.jni.File;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.annotation.Rollback;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,6 +46,37 @@ public class UserRepositoryTests {
 
     }
 
+    //from Spring Docs, testing the Web Layer
+    @SpringBootTest
+    public class SmokeTest {
+
+        @Autowired
+        MeetController meetController;
+
+        @Test
+        public void contextLoads () throws Exception {
+            assertThat(meetController).isNotNull();
+        }
+    }
+
+    @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+    public class HttpRequestTest {
+
+        @LocalServerPort
+        private int port;
+
+        @Autowired
+        private TestRestTemplate restTemplate;
+
+        @Test
+        public void greetingShouldReturnDefaultMessage() throws Exception {
+            assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/",
+                    String.class)).contains("Hello, World");
+        }
+    }
+
+    //TODO: Finish remaining tests from https://spring.io/guides/gs/testing-web/
+
 //    @Test
 //    public void exampleTestAssertAll() {
 //        User user = new User();
@@ -58,28 +90,28 @@ public class UserRepositoryTests {
 //    }
     //reference https://stackabuse.com/unit-testing-in-java-with-junit-5/
 
-    User test_user;
-    @Before
-    public void exampleBefAnnotTest() {
-        test_user = new User("first name", "password", "email", "last name");
-    }
-
-    //From Chapter 6, "A good or frequent use case for @After would be if you needed to test some code that requires
-    // access to a database. Here, you could open the database connection with a @Before method and close the connection in an @After method.
-
-    public class Example {
-        File output;
-        @Before public void createOutputFile() {
-            output= new File();
-        }
-        @Test public void something() {
-
-        }
-        @After
-        public void deleteOutputFile() {
-            output.hashCode();
-        }
-    }
+//    User test_user;
+//    @Before
+//    public void exampleBefAnnotTest() {
+//        test_user = new User("first name", "password", "email", "last name");
+//    }
+//
+//    //From Chapter 6, "A good or frequent use case for @After would be if you needed to test some code that requires
+//    // access to a database. Here, you could open the database connection with a @Before method and close the connection in an @After method.
+//
+//    public class Example {
+//        File output;
+//        @Before public void createOutputFile() {
+//            output= new File();
+//        }
+//        @Test public void something() {
+//
+//        }
+//        @After
+//        public void deleteOutputFile() {
+//            output.hashCode();
+//        }
+//    }
 
     //TODO: Using the test examples above, rework to consider project & consider simple ways to use tests to design code implementation for work item 1.
 }

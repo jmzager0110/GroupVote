@@ -1,5 +1,5 @@
 package com.liftoff.soloproject;
-//TODO: is this an older version of WebApplicationConfig? Created from Part 8 of tutorial
+//TODO: Configuring Spring Security, from Part 8 of tutorial
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

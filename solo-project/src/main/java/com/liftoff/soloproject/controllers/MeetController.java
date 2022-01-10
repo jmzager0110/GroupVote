@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -50,6 +49,6 @@ public class MeetController {
     }
 }
 
-//TODO: login.html & register.html is using <form method="post">
-//TODO: html files from the tutorial far more complex, see notes.txt for ideas
+//TODO: Refactor users.html to events.html? Or preserve for function within Events?
+//TODO: html files from the tutorial more complex, see notes.txt for ideas
 
