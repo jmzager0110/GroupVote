@@ -8,29 +8,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 
 @Controller
-@ResponseBody
+@RequestMapping(value = "/access")
 public class MeetController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("")
-    public String viewHomePage() {
+    @RequestMapping(value = "/")
+    public String index(Model model) {
+        model.addAttribute("title", "Title");
         return "index";
     }
 
-    @GetMapping("/register")
+    @GetMapping(value = "/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "signup_form";
+        return "signup";
     }
 
+    //TODO: Verify this is salting properly
     @PostMapping("/process_register")
     public String processRegister(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

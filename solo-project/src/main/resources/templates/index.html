@@ -1,22 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title th:text="">UpDoot</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"></script>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body class="container">
-<div class="container text-center">
-    <h1>UpDoot!</h1>
-    <h2>A short blurb about the site goes here!</h2>
-    <h3><a th:href="@{/login/}">Login</a></h3>
-    <h3>Don't have an account? <a href="/signup_form">Register for one.</a></h3>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
 
-</div>
 
-<footer></footer>
+<h1>UpDoot! Where the name is temporary!</h1>
+<nav th:replace="fragments :: navigation"></nav>
+
+
 </body>
 </html>

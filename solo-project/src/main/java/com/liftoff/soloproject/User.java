@@ -1,7 +1,5 @@
 package com.liftoff.soloproject;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
@@ -81,12 +79,11 @@ public class User extends AbstractEntity {
         return Objects.hash(super.hashCode(), getEmail(), getPassword(), getFirstName(), getLastName());
     }
 
-    //TODO: Finish/Update toString Method, it shouldn't have password, right?
+
     @Override
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
