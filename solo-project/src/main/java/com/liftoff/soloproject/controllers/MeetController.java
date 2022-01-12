@@ -14,19 +14,26 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(value = "/access")
+@RequestMapping(value = "access")
 public class MeetController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute("title", "Title");
         return "index";
     }
 
-    @GetMapping(value = "/register")
+    @GetMapping(value = "login")
+    public String showLoginForm(Model model, User user) {
+        model.addAttribute("username", userRepository.findByEmail(""));
+        model.addAttribute("password", user.getPassword());
+        return "login";
+    }
+
+    @GetMapping(value = "register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
         return "signup";
@@ -41,7 +48,7 @@ public class MeetController {
         userRepository.save(user);
         return "register_success";
     }
-
+    //TODO: Refactor this method once the event model is designed
     @GetMapping("/users")
     public String listUsers(Model model) {
         List<User> listUsers = (List<User>) userRepository.findAll();
