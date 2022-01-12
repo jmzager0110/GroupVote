@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head"></head>
 <body>
 
-<form th:action="@{/login}" method="post">
+<form th:action="@{login}" method="post">
     <div>
         <label th:for="username">Username
             <input th:field="${user.username}" />

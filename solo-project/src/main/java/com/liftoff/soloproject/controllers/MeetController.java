@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(value = "access")
+//@RequestMapping(value = "access")
 public class MeetController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class MeetController {
         model.addAttribute("title", "Title");
         return "index";
     }
-
+    //TODO: Add hasErrors method
     @GetMapping(value = "login")
     public String showLoginForm(Model model, User user) {
         model.addAttribute("username", userRepository.findByEmail(""));

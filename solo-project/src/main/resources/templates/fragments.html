@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
-    <title th:text="${title}"></title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="static/Standard-CSS.css" th:href="@{/static/Standard-CSS.css}" />
+    <link th:href="@{../standard-css.css}" type="text/css" rel="stylesheet" />
+    <title th:text="${title}"></title>
 </head>
 <body>
 
 <nav th:fragment="navigation">
     <h1>Hey, it's a landing page!</h1>
     <ul>
-        <li><a th:href="@{access/login}">Log In</a></li>
-
+        <li><a th:href="@{/login}">Log In</a></li>
+        <li><a th:href="@{login}">Log In</a></li>
         <li>Don't have an account yet?<a th:href="@{access/signup}">Register for one!</a></li>
+        <li>Don't have an account yet?<a th:href="@{signup}">Register for one!</a></li>
     </ul>
 </nav>
 
